@@ -1,0 +1,51 @@
+﻿@model IEnumerable<wowberry_crud.Models.Audit>
+
+@{
+    ViewData["Title"] = "Audit";
+}
+
+<h2>Audit</h2>
+
+<form method="get" asp-action="Index">
+    <div class="form-group">
+        <label>Table Name</label>
+        <input type="text" name="tableName" class="form-control" value="@ViewData["TableName"]" placeholder="e.g., Entries, Users" />
+    </div>
+    <div class="form-group">
+        <label>Start Date</label>
+        <input type="date" name="startDate" class="form-control" value="@ViewData["StartDate"]" />
+    </div>
+    <div class="form-group">
+        <label>End Date</label>
+        <input type="date" name="endDate" class="form-control" value="@ViewData["EndDate"]" />
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<table class="table table-bordered mt-4">
+    <thead>
+        <tr>
+            <th>Audit ID</th>
+            <th>Table Name</th>
+            <th>Field Name</th>
+            <th>Old Value</th>
+            <th>New Value</th>
+            <th>Modified By</th>
+            <th>Modified At</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var audit in Model)
+        {
+            <tr>
+                <td>@audit.AuditID</td>
+                <td>@audit.TableName</td>
+                <td>@audit.FieldName</td>
+                <td>@audit.OldValue</td>
+                <td>@audit.NewValue</td>
+                <td>@audit.User?.UserName ?? "Unknown"</td>
+                <td>@audit.ModifiedAt.ToString("g")</td>
+            </tr>
+        }
+    </tbody>
+</table>

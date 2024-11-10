@@ -1,0 +1,66 @@
+﻿@model IEnumerable<wowberry_crud.Models.Entries>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Entry - Index</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Entry</a>
+</p>
+<br/>
+<table class="table table-dark table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Narration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Currency)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Credit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Debit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Narration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Currency)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Debit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                    <button><a asp-action="Edit" asp-route-id="@item.EntryID">Edit</a></button> |
+                    <button><a asp-action="Details" asp-route-id="@item.EntryID">Details</a></button> |
+                    <button><a asp-action="Delete" asp-route-id="@item.EntryID">Delete</a></button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
